@@ -1,0 +1,8 @@
+db:
+  image: postgres:9.4
+yoga-all:
+  image: zachjamesgreen/yoga-all
+  ports:
+    - "8000:80"
+  links:
+    - db
