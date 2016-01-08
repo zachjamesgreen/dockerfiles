@@ -8,3 +8,5 @@ sudo docker push zachjamesgreen/nodedev:strongloop
 sudo docker push zachjamesgreen/omzdev
 sudo docker push zachjamesgreen/omzdev:debian
 sudo docker push zachjamesgreen/php7-apache-pg_dev_libs
+
+sudo docker push zachjamesgreen/nodedev:strongloop

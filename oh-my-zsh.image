@@ -5,7 +5,6 @@
 FROM ubuntu
 MAINTAINER Zachary Green <zachjamesgreen@gmail.com>
 
-ENV HOME /root
 RUN apt-get update \
     && apt-get -y install zsh git curl \
     && apt-get -y autoremove \
@@ -15,7 +14,7 @@ ENV HOME /root
 WORKDIR $HOME
 
 # Using forked version of OhMyZsh only one plugin (git) and one theme (clean)
-RUN git clone git://github.com/zachjamesgreen/oh-my-zsh.git ~/.oh-my-zsh\
+ONBUILD RUN git clone git://github.com/zachjamesgreen/oh-my-zsh.git ~/.oh-my-zsh \
     && chsh -s /bin/zsh \
     && cp ~/.oh-my-zsh/templates/zshrc.zsh-template ~/.zshrc
 WORKDIR /root
