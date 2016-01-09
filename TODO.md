@@ -7,5 +7,3 @@ git checkout -m revision  -- the/file/you/want
 git add the/file/you/want
 git commit
 ```
-
-## Look into ONBUILD for images

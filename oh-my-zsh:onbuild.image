@@ -1,0 +1,39 @@
+############################################################
+# Dockerfile to build OhMyZsh Dev container images
+# Based on Latest ubuntu
+# ARG USER
+# ARG UID
+############################################################
+FROM ubuntu
+MAINTAINER Zachary Green <zachjamesgreen@gmail.com>
+USER root
+ONBUILD RUN apt-get update \
+    && apt-get -y install zsh git curl \
+    && apt-get -y autoremove \
+    && apt-get clean \
+    && rm -r /var/lib/apt/lists/*
+
+# Using forked version of OhMyZsh only one plugin (git) and one theme (clean)
+ONBUILD RUN git clone git://github.com/zachjamesgreen/oh-my-zsh.git ~/.oh-my-zsh \
+    && chsh -s /bin/zsh \
+    && cp ~/.oh-my-zsh/templates/zshrc.zsh-template ~/.zshrc
+
+
+ENV SHELL /bin/zsh
+ONBUILD ARG USER=docker-user
+ONBUILD ENV USER $USER
+ONBUILD ARG UID=1000
+ONBUILD ENV HOME /home/$USER
+ONBUILD RUN mkdir -p $HOME
+ONBUILD RUN echo "$USER ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers \
+            && useradd -ms $SHELL -u $(echo $UID) $(echo $USER)
+ONBUILD WORKDIR $HOME
+# HACk for now so that i can dev on local machine
+# Using forked version of OhMyZsh only one plugin (git) and one theme (clean)
+ONBUILD RUN git clone git://github.com/zachjamesgreen/oh-my-zsh.git $HOME/.oh-my-zsh \
+    && cp ~/.oh-my-zsh/templates/zshrc.zsh-template $HOME/.zshrc \
+    && mkdir $HOME/Dockervolumes \
+    && chown -R $USER:$USER .
+
+WORKDIR /root
+CMD ["/bin/zsh"]
