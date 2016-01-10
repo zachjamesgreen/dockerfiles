@@ -1,4 +1,4 @@
-# sudo docker run --rm -it \
+# docker run --rm -it \
 # -v ~/Files/Dockervolumes/go:/home/docker-user/go \
 # zachjamesgreen/go-dev
 FROM zachjamesgreen/omzdev:onbuild
