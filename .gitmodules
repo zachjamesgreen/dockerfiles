@@ -1,0 +1,4 @@
+[submodule "angular2/angular2-seed"]
+	path = angular2/angular2-seed
+	url = https://github.com/zachjamesgreen/angular2-seed.git
+	branch = systemjs

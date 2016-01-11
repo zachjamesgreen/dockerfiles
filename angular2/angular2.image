@@ -1,0 +1,13 @@
+FROM zachjamesgreen/nodedev
+MAINTAINER Zachary Green <zachjamesgreen@gmail.com>
+
+RUN npm install -g gulp
+USER $USER
+RUN mkdir $HOME/ng2-app
+WORKDIR $HOME/ng2-app
+COPY angular2-seed/package.json ./
+RUN npm install
+COPY angular2-seed/ ./
+VOLUME $HOME/ng2-app
+
+CMD ["/bin/zsh"]

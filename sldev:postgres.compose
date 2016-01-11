@@ -1,0 +1,13 @@
+db:
+  image: postgres
+sldev:
+  image: zachjamesgreen/nodedev:strongloop
+  volumes:
+    - ~/Files/Dockervolumes:/home/zach/Dockervolumes
+  links:
+    - db
+  ports:
+    - "3000:3000"
+
+
+# make this into bash script
