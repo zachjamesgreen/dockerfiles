@@ -5,9 +5,10 @@ RUN npm install -g gulp
 USER $USER
 RUN mkdir $HOME/ng2-app
 WORKDIR $HOME/ng2-app
-COPY angular2-seed/package.json ./
-RUN npm install
-COPY angular2-seed/ ./
-VOLUME $HOME/ng2-app
-
+# COPY angular2-seed/package.json ./
+# RUN npm install
+# COPY angular2-seed/ ./
+# RUN sudo chown -R $USER:$USER .
+# VOLUME $HOME/ng2-app
+EXPOSE 8080 35729
 CMD ["/bin/zsh"]

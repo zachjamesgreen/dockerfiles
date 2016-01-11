@@ -1,14 +1,14 @@
-sudo docker build --force-rm -t zachjamesgreen/nodedev -f node.image .
-sudo docker build --force-rm -t zachjamesgreen/nodedev:strongloop -f node:strongloop.image .
-sudo docker build --force-rm -t zachjamesgreen/omzdev -f oh-my-zsh.image .
-sudo docker build --force-rm -t zachjamesgreen/omzdev:debian -f oh-my-zsh-debian.image .
-sudo docker build --force-rm -t zachjamesgreen/omzdev:onbuild -f oh-my-zsh:onbuild.image .
-sudo docker build --force-rm -t zachjamesgreen/go-dev -f go.image .
-sudo docker build --force-rm -t zachjamesgreen/php7-apache-pg_dev_libs -f php7-apache-pg_dev_libs/php7-apache-pg_dev_libs.image php7-apache-pg_dev_libs/
-sudo docker push zachjamesgreen/nodedev
-sudo docker push zachjamesgreen/nodedev:strongloop
-sudo docker push zachjamesgreen/omzdev
-sudo docker push zachjamesgreen/omzdev:debian
-sudo docker push zachjamesgreen/omzdev:onbuild
-sudo docker push zachjamesgreen/go-dev
-sudo docker push zachjamesgreen/php7-apache-pg_dev_libs
+docker build --force-rm -t zachjamesgreen/nodedev -f node.image .
+docker build --force-rm -t zachjamesgreen/nodedev:strongloop -f node:strongloop.image .
+docker build --force-rm -t zachjamesgreen/omzdev -f oh-my-zsh.image .
+docker build --force-rm -t zachjamesgreen/omzdev:debian -f oh-my-zsh-debian.image .
+docker build --force-rm -t zachjamesgreen/omzdev:onbuild -f oh-my-zsh:onbuild.image .
+docker build --force-rm -t zachjamesgreen/go-dev -f go.image .
+docker build --force-rm -t zachjamesgreen/php7-apache-pg_dev_libs -f php7-apache-pg_dev_libs/php7-apache-pg_dev_libs.image php7-apache-pg_dev_libs/
+docker push zachjamesgreen/nodedev
+docker push zachjamesgreen/nodedev:strongloop
+docker push zachjamesgreen/omzdev
+docker push zachjamesgreen/omzdev:debian
+docker push zachjamesgreen/omzdev:onbuild
+docker push zachjamesgreen/go-dev
+docker push zachjamesgreen/php7-apache-pg_dev_libs

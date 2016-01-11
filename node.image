@@ -4,7 +4,7 @@
 # packags installed from base image:
 #   git zsh curl
 ##########################################################
-FROM zachjamesgreen/omzdev
+FROM zachjamesgreen/omzdev:onbuild
 MAINTAINER Zachary Green <zachjamesgreen@gmail.com>
 # RUN apt-get update \
 #     && apt-get -y install \
