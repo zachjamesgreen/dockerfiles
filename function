@@ -1,0 +1,17 @@
+CREATE OR REPLACE FUNCTION add_user_home()
+RETURNS trigger
+AS
+$function$
+  RETURN NULL;
+$function$ language plpythonu;
+
+CREATE TRIGGER  add_user_home_tr AFTER INSERT
+ON users
+FOR EACH ROW
+EXECUTE PROCEDURE add_user_home(NEW)
+
+CREATE TRIGGER  add_user_home_tr AFTER UPDATE OF username
+ON users
+FOR EACH ROW
+WHEN ( OLD.username IS DISTINCT FROM NEW.username )
+EXECUTE PROCEDURE add_user_home(NEW)

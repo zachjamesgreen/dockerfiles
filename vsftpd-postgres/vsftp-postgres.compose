@@ -1,0 +1,10 @@
+db:
+  image: zachjamesgreen/postgres:vsftpd
+  ports:
+    - "12346:5432"
+ftp:
+  image: zachjamesgreen/vsftpd
+  ports:
+    - "12345:21"
+  links:
+    - db

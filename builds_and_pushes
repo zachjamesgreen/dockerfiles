@@ -4,6 +4,8 @@ docker build --force-rm -t zachjamesgreen/omzdev -f oh-my-zsh.image .
 docker build --force-rm -t zachjamesgreen/omzdev:debian -f oh-my-zsh-debian.image .
 docker build --force-rm -t zachjamesgreen/omzdev:onbuild -f oh-my-zsh:onbuild.image .
 docker build --force-rm -t zachjamesgreen/go-dev -f go.image .
+docker build --force-rm -t zachjamesgreen/vsftpd -f vsftpd-postgres/vsftpd.image vsftpd-postgres
+docker build --force-rm -t zachjamesgreen/postgres:vsftpd -f vsftpd-postgres/postgres.image vsftpd-postgres
 docker build --force-rm -t zachjamesgreen/php7-apache-pg_dev_libs -f php7-apache-pg_dev_libs/php7-apache-pg_dev_libs.image php7-apache-pg_dev_libs/
 docker push zachjamesgreen/nodedev
 docker push zachjamesgreen/nodedev:strongloop
@@ -11,4 +13,6 @@ docker push zachjamesgreen/omzdev
 docker push zachjamesgreen/omzdev:debian
 docker push zachjamesgreen/omzdev:onbuild
 docker push zachjamesgreen/go-dev
+docker push zachjamesgreen/vsftpd
+docker push zachjamesgreen/postgres:vsftpd
 docker push zachjamesgreen/php7-apache-pg_dev_libs

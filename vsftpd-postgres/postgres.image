@@ -1,42 +1,7 @@
 FROM postgres:9.5
 
-RUN apt-get update \
-	&& apt-get install -y \
-		libpq-dev curl git build-essential autoconf libgcrypt11-dev zlib1g-dev libtool libpam0g-dev libpam-pgsql \
-		postgresql-server-dev-$PG_MAJOR=$PG_VERSION \
-	&& rm -rf /var/lib/apt/lists/*
-
-RUN git clone https://github.com/pam-pgsql/pam-pgsql.git \
-    && cd pam-pgsql \
-    && ./autogen.sh \
-    && ./configure \
-    && make \
-    && make install \
-    && rm -rf pam-pgsql
-
-WORKDIR ~/
-
-RUN curl https://security.appspot.com/downloads/vsftpd-3.0.3.tar.gz > vsftpd-3.0.3.tar.gz \
-    && tar xfzv vsftpd-3.0.3.tar.gz \
-    && rm vsftpd-3.0.3.tar.gz
-
-RUN mkdir /usr/share/empty/ && mkdir -p /usr/local/man/man5 && mkdir -p /usr/local/man/man8
-
-RUN cd vsftpd-3.0.3 && make && make install
-COPY vsftpd.conf /etc
-COPY pam_pgsql.conf /etc
-COPY ftp /etc/pam.d
-
-RUN mkdir /var/ftp/ && useradd -d /var/ftp ftp && chown root:root /var/ftp && chmod og-w /var/ftp
-
 ENV POSTGRES_PASSWORD QmDfZx5782
 ENV POSTGRES_DB users
 ENV POSTGRES_USER zach
 
-RUN mkdir -p /root/vsftpd_root/
-RUN useradd -d /var/vsftpd/ -s /usr/sbin/nologin vsftpd && mkdir -p /var/vsftpd/ && chown vsftpd:vsftpd /var/vsftpd/
-
-
-EXPOSE 21 5432
-
-# CMD ["/usr/local/sbin/vsftpd"]
+COPY init.sql /docker-entrypoint-initdb.d/
