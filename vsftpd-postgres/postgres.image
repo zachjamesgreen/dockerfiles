@@ -1,7 +1,0 @@
-FROM postgres:9.5
-
-ENV POSTGRES_PASSWORD QmDfZx5782
-ENV POSTGRES_DB users
-ENV POSTGRES_USER zach
-
-COPY init.sql /docker-entrypoint-initdb.d/

@@ -1,10 +1,10 @@
 ##########################################################
-# Base image for php dev containers that need pg dev libs
+# Base image for php dev containers
 # Uses Debian jessie with zsh
 # packages installed from base image:
 #   git zsh curl
 ##########################################################
-FROM zachjamesgreen/omzdev:debian
+FROM zachjamesgreen/omzdev:debian-onbuild
 MAINTAINER Zachary Green <zachjamesgreen@gmail.com>
 
 

@@ -1,2 +1,0 @@
-auth       required	/lib/security/pam_pgsql.so config_file=/etc/pam_pgsql.conf
-account    required	/lib/security/pam_pgsql.so config_file=/etc/pam_pgsql.conf
