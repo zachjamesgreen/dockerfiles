@@ -1,0 +1,26 @@
+FROM zachjamesgreen/omzdev:debian
+MAINTAINER Zachary Green <zachjamesgreen@gmail.com>
+
+RUN apt-get update \
+    && apt-get -y install openssh-server \
+    && apt-get -y autoremove \
+    && apt-get clean \
+    && rm -r /var/lib/apt/lists/*
+
+RUN mkdir /var/run/sshd
+RUN sed -i "s/#PasswordAuthentication yes/PasswordAuthentication no/" /etc/ssh/sshd_config
+
+
+RUN useradd -ms /usr/bin/git-shell git
+WORKDIR /home/git
+USER git
+RUN mkdir .ssh \
+    && chmod 700 .ssh \
+    && touch .ssh/authorized_keys \
+    && chmod 600 .ssh/authorized_keys
+COPY newrepo.sh /bin/newrepo
+COPY key key
+RUN cat key >> .ssh/authorized_keys && rm key
+USER root
+EXPOSE 22
+CMD ["/usr/sbin/sshd", "-D"]
