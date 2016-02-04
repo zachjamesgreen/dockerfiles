@@ -1,5 +1,5 @@
 # docker run --rm -it \
-# -v ~/Files/Dockervolumes/go:/home/docker-user/go \
+# -v $(pwd):/home/docker-user/go \
 # zachjamesgreen/go-dev
 FROM zachjamesgreen/omzdev:onbuild
 
