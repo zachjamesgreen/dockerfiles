@@ -1,4 +1,4 @@
-FROM zachjamesgreen/omzdev:onbuild
+FROM zachjamesgreen/omzdev:debian-onbuild
 MAINTAINER Zachary Green <zachjamesgreen@gmail.com>
 
 RUN mkdir -p /usr/local/etc \
@@ -21,7 +21,7 @@ RUN set -ex \
 		ruby \
 	' \
 	&& apt-get update \
-	&& apt-get install -y --no-install-recommends $buildDeps \
+	&& apt-get install -y --no-install-recommends $buildDeps build-essential autoconf zlib1g zlib1g-dev apt-transport-https ca-certificates openssl libssl-dev \
 	&& rm -rf /var/lib/apt/lists/* \
 	&& curl -fSL -o ruby.tar.gz "http://cache.ruby-lang.org/pub/ruby/$RUBY_MAJOR/ruby-$RUBY_VERSION.tar.gz" \
 	&& echo "$RUBY_DOWNLOAD_SHA256 *ruby.tar.gz" | sha256sum -c - \
@@ -68,5 +68,5 @@ RUN bundle install
 ADD config.ru /opt/docker-gems
 ADD unicorn.rb /opt/docker-gems
 
-ENV PORT 92244
-CMD ["bundle", "exec", "unicorn", "-c", "/geminabox/unicorn.rb"]
+ENV PORT 9224
+CMD ["bundle", "exec", "unicorn", "-c", "/opt/docker-gems/unicorn.rb"]
