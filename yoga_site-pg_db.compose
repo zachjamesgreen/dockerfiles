@@ -1,8 +1,16 @@
 db:
-  image: postgres:9.4
-yoga-all:
-  image: zachjamesgreen/yoga-all
+  image: postgres:9.5
+  environment:
+    - POSTGRES_PASSWORD=dockergit
+    - POSTGRES_USER=gogs
+    - POSTGRES_DB=gogs
+docker-gogs:
+  image: zachjamesgreen/docker-gogs
   ports:
-    - "8000:80"
+    - "3333:3333"
+  autoredeploy: true
+  restart: on-failure
+  volumes:
+    - '/opt/git/repos:/home/git/repos'
   links:
     - db
