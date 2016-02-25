@@ -1,0 +1,14 @@
+db:
+  image: postgres:9.5
+  environment:
+    - POSTGRES_DB=yoga
+    - POSTGRES_PASSWORD=QmDfZx5782
+    - POSTGRES_USER=zach
+  expose:
+    - '5432'
+admin:
+  image: zachjamesgreen/yogaadmin:latest
+  links:
+    - db
+app:
+  image: zachjamesgreem/yoga:latest
