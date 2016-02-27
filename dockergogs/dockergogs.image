@@ -9,7 +9,7 @@ RUN curl https://dl.gogs.io/gogs_v0.8.43_linux_amd64.tar.gz > /home/git/gogs.tar
     && tar xfzv gogs.tar.gz \
     && mkdir -p /home/git/gogs/custom/conf
 COPY app.ini /home/git/gogs/custom/conf/
-EXPOSE 3333
+EXPOSE 3333 22
 ENV USER git
 ENV HOME /home/git
 CMD ["/home/git/gogs/gogs", "web"]

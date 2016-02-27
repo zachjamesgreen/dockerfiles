@@ -12,6 +12,5 @@ docker-gogs:
   restart: on-failure
   volumes:
     - /opt/git/repos:/home/git/repos
-    - /root/.ssh:/home/git/.ssh
   links:
     - db
