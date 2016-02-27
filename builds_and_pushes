@@ -11,6 +11,8 @@ docker build --force-rm -t zachjamesgreen/omzdev:debian-onbuild -f oh-my-zsh:deb
 
 docker build --force-rm -t zachjamesgreen/docker-gems -f gemserver/docker-gems gemserver
 docker build --force-rm -t zachjamesgreen/docker-gitlab -f docker-gitlab/gitlab.image docker-gitlab
+docker build --force-rm -t zachjamesgreen/docker-gogs -f dockergogs/dockergogs.image dockergogs
+
 
 docker push zachjamesgreen/nodedev
 docker push zachjamesgreen/nodedev:strongloop
@@ -24,3 +26,4 @@ docker push zachjamesgreen/php7-apache-pg_dev_libs
 docker push zachjamesgreen/omzdev:debian-onbuild
 docker push zachjamesgreen/docker-gems
 docker push zachjamesgreen/docker-gitlab
+docker push zachjamesgreen/docker-gogs
