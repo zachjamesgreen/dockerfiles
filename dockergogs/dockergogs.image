@@ -1,15 +1,31 @@
 FROM zachjamesgreen/omzdev:debian
 MAINTAINER Zachary Green <zachjamesgreen@gmail.com>
 
+# RUN apt-get update \
+#     && apt-get -y install openssh-server \
+#     && apt-get -y autoremove \
+#     && apt-get clean \
+#     && rm -r /var/lib/apt/lists/*
+#
+# RUN mkdir /var/run/sshd
+# RUN sed -i "s/#PasswordAuthentication yes/PasswordAuthentication no/" /etc/ssh/sshd_config
+
 RUN useradd -ms /usr/bin/git-shell git
-RUN mkdir -p /opt/git/repos && chown -R git:git /opt/git/
+RUN mkdir -p /opt/git/repos \
+    && chown -R git:git /opt/git/ \
+    && mkdir -p /home/git/.ssh \
+    && chown -R git:git /home/git/.ssh
+# COPY run.sh /run.sh
+# RUN chmod 777 /run.sh
 WORKDIR /home/git
 USER git
 RUN curl https://dl.gogs.io/gogs_v0.8.43_linux_amd64.tar.gz > /home/git/gogs.tar.gz \
     && tar xfzv gogs.tar.gz \
-    && mkdir -p /home/git/gogs/custom/conf
+    && mkdir -p /home/git/gogs/custom/conf \
+    && rm -rf /home/git/gogs.tar.gz
 COPY app.ini /home/git/gogs/custom/conf/
-EXPOSE 3333 22
+EXPOSE 3333
 ENV USER git
 ENV HOME /home/git
+# USER root
 CMD ["/home/git/gogs/gogs", "web"]
